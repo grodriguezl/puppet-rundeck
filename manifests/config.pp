@@ -126,6 +126,7 @@ class rundeck::config {
     file { "${properties_dir}/realm.properties":
       content => template($realm_template),
       require => File[$properties_dir],
+      replace => 'no',
     }
   }
 
