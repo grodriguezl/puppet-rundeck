@@ -90,7 +90,7 @@ class rundeck::config {
   $plugin_dir     = $framework_config['framework.libext.dir']
 
   File[$rdeck_home] ~> File[$framework_config['framework.ssh.keypath']]
-  notify {"SSL ENABLED: ${ssl_enabled}":}
+
   if $manage_home {
     file{ $rdeck_home:
       ensure  => directory,
