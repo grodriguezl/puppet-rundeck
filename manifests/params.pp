@@ -259,8 +259,6 @@ class rundeck::params {
 
   $clustermode_enabled = false
 
-  $grails_server_url = "http://${facts['fqdn']}:4440"
-
   $database_config = {
     'type'            => 'h2',
     'dbCreate'        => 'update',

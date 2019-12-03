@@ -285,6 +285,12 @@ class rundeck (
 
   validate_rd_policy($acl_policies)
 
+  if $ssl_enabled {
+    $grails_server_url = "http://${facts['fqdn']}:4440"
+  } else {
+    $grails_server_url = "https://${facts['fqdn']}:${ssl_port}"
+  }
+
   contain rundeck::install
   contain rundeck::config
   contain rundeck::service
