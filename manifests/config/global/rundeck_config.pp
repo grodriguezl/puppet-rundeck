@@ -34,7 +34,9 @@ class rundeck::config::global::rundeck_config {
   $rss_enabled                          = $rundeck::config::rss_enabled
   $security_config                      = $rundeck::config::security_config
   $user                                 = $rundeck::config::user
-
+  $ssl_enabled                          = $rundeck::config::ssl_config
+  $_framework_config = merge($rundeck::params::framework_config, $rundeck::framework_config)
+  $framework_config = merge($_framework_config, $framework_config_url, $framework_config_port)
   $properties_file = "${properties_dir}/rundeck-config.groovy"
 
   ensure_resource('file', $properties_dir, {'ensure' => 'directory', 'owner' => $user, 'group' => $group} )
