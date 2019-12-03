@@ -36,6 +36,16 @@ class rundeck::config::global::rundeck_config {
   $user                                 = $rundeck::config::user
   $ssl_enabled                          = $rundeck::config::ssl_enabled
   $_framework_config = merge($rundeck::params::framework_config, $rundeck::framework_config)
+  if $ssl_enabled {
+    $framework_config_port = { 'framework.server.port' => $ssl_port }
+    $framework_config_url = { 'framework.server.url' => "https://${rundeck_hostname}:${ssl_port}" }
+  } elsif $rundeck_hostname != $rundeck::params::framework_config['framework.server.hostname'] {
+    $framework_config_port = undef
+    $framework_config_url = { 'framework.server.url' => "http://${rundeck_hostname}:${rundeck_port}" }
+  } else {
+    $framework_config_port = undef
+    $framework_config_url = undef
+  }
   $framework_config = merge($_framework_config, $framework_config_url, $framework_config_port)
   $properties_file = "${properties_dir}/rundeck-config.groovy"
 
