@@ -35,7 +35,10 @@ class rundeck::config::global::rundeck_config {
   $security_config                      = $rundeck::config::security_config
   $user                                 = $rundeck::config::user
   $ssl_enabled                          = $rundeck::config::ssl_enabled
+  $ssl_port       = $rundeck::config::ssl_port
   $_framework_config = merge($rundeck::params::framework_config, $rundeck::framework_config)
+    $rundeck_hostname = $_framework_config['framework.server.hostname']
+  $rundeck_port = $_framework_config['framework.server.port']
   if $ssl_enabled {
     $framework_config_port = { 'framework.server.port' => $ssl_port }
     $framework_config_url = { 'framework.server.url' => "https://${rundeck_hostname}:${ssl_port}" }
