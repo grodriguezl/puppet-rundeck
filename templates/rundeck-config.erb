@@ -57,7 +57,7 @@ grails {
 <%- if @mail_config['defaults.from'] -%>
 grails.mail.default.from = "<%= @mail_config['defaults.from'] %>"
 <%- end -%>
-"<%= @ssl_enabled %>"
+
 <%- if @ssl_enabled -%>
 grails.serverURL = "<%= @framework_config['framework.server.url'] %>"
 <%- else -%>
