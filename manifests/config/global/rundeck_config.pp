@@ -59,9 +59,7 @@ class rundeck::config::global::rundeck_config {
   file { "${properties_dir}/rundeck-config.properties":
     ensure => absent,
   }
-
-  notify {"SSL ENABLED: ${ssl_enabled}":}
-
+  
   file { $properties_file:
     ensure  => present,
     content => template($rdeck_config_template),
