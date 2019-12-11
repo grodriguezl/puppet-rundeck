@@ -58,11 +58,9 @@ grails {
 grails.mail.default.from = "<%= @mail_config['defaults.from'] %>"
 <%- end -%>
 
-<%- if @ssl_enabled -%>
-grails.serverURL = "<%= @framework_config['framework.server.url'] %>"
-<%- else -%>
+
 grails.serverURL = "<%= @grails_server_url %>"
-<%- end -%>
+
 
 rundeck.clusterMode.enabled = "<%= @clustermode_enabled %>"
 <%- if @execution_mode -%>
