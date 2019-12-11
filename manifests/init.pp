@@ -203,6 +203,8 @@
 #  $security_roles_array         = hiera('rundeck::config::global::web::security_roles_array', []),
 #
 class rundeck (
+  String $server_admin_username                                 = $rundeck::params::server_admin_username,
+  String $server_admin_password                                 = $rundeck::params::server_admin_password,
   Array[Hash] $acl_policies                                     = $rundeck::params::acl_policies,
   String $acl_template                                          = $rundeck::params::acl_template,
   Array[Hash] $api_policies                                     = $rundeck::params::api_policies,
