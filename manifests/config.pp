@@ -191,6 +191,12 @@ class rundeck::config {
       content => template($rdeck_profile_template),
       require => File[$properties_dir],
     }
+  } else {
+    file_line {"${properties_dir}/profile":
+      ensure => present,
+      line => "RDECK_HTTPS_PORT=\${RDECK_HTTPS_PORT:-${ssl_port}}"
+      match => 'RDECK_HTTPS_PORT=${RDECK_HTTPS_PORT:-[0-9]+}'
+    }
   }
 
   file { "${overrides_dir}/${service_name}":
