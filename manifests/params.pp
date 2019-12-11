@@ -37,14 +37,17 @@ class rundeck::params {
   $rdeck_home = '/var/lib/rundeck'
   $manage_home = true
   $service_logs_dir = '/var/log/rundeck'
+  
+  $server_admin_username = 'admin'
+  $server_admin_password = 'admin'
 
   $framework_config = {
     'framework.server.name'     => $facts['fqdn'],
     'framework.server.hostname' => $facts['fqdn'],
     'framework.server.port'     => '4440',
     'framework.server.url'      => "http://${facts['fqdn']}:4440",
-    'framework.server.username' => 'admin',
-    'framework.server.password' => 'admin',
+    'framework.server.username' => $server_admin_username,
+    'framework.server.password' => $server_admin_password,
     'rdeck.base'                => '/var/lib/rundeck',
     'framework.projects.dir'    => '/var/lib/rundeck/projects',
     'framework.etc.dir'         => '/etc/rundeck',
